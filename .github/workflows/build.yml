@@ -17,5 +17,7 @@ jobs:
       run: make -n build
     - name: Test
       run: make test
-    - name: build
+    - name: Build
       run: make build
+    - name: Confirm
+      run: ./target/main.exe -v

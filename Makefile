@@ -14,7 +14,7 @@ HEADER   := src/version.h
 # versioning
 MAJOR    := 0
 MINOR    := 0
-PATCH    := 5
+PATCH    := 6
 GITHASH  := $(shell git rev-parse HEAD)
 VERSION  := $(MAJOR).$(MINOR).$(PATCH).$(GITHASH)
 
