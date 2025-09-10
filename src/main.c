@@ -1,8 +1,11 @@
 #include <stdio.h>
 
 #include "add.h"
+#include "version.h"
 
 int main() {
+    printf("version: %s\n", VERSION);
+
     int leftAddend = 2;
     int rightAddend = 3;
 
