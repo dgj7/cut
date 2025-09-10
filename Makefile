@@ -13,7 +13,7 @@ TEST     := $(BUILDDIR)/test.exe
 # versioning
 MAJOR    := 0
 MINOR    := 0
-PATCH    := 3
+PATCH    := 4
 GITHASH  := $(shell git rev-parse HEAD)		# short: git rev-parse --short HEAD
 VERSION  := $(MAJOR).$(MINOR).$(PATCH)
 
