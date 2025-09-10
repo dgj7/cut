@@ -11,9 +11,9 @@ PROGRAM  := $(BUILDDIR)/main.exe
 TEST     := $(BUILDDIR)/test.exe
 
 # versioning
-MAJOR    := 1
+MAJOR    := 0
 MINOR    := 0
-PATCH    := 0
+PATCH    := 2
 GITHASH  := $(shell git rev-parse HEAD)		# short: git rev-parse --short HEAD
 VERSION  := $(MAJOR).$(MINOR).$(PATCH)
 

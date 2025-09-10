@@ -5,7 +5,7 @@
 #include "cut.h"
 
 cut_test_t tests[1000];
-static int index = 0;
+static int cutTestIndex = 0;
 
 /**
  * Register a test with cut; this is necessary for the test to be run by the framework.
@@ -20,10 +20,10 @@ void register_test(void (*f)(cut_run_t *), char * name) {
     strcpy(test.name, name);
 
     /* store the test */
-    tests[index] = test;
+    tests[cutTestIndex] = test;
 
     /* increment the current index */
-    index += 1;
+    cutTestIndex += 1;
 }
 
 /**
@@ -34,7 +34,7 @@ int run_tests() {
     int failed = 0;
 
     /* loop over all registered tests; number is equal to the current index, minus 1 */
-    for (int c = 0; c < index; c++) {
+    for (int c = 0; c < cutTestIndex; c++) {
         /* create a test run; values are initially zero */
         cut_run_t run = {.total_successful=0, .total_failed=0};
 
