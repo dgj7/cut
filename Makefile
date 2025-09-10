@@ -13,7 +13,7 @@ TEST     := $(BUILDDIR)/test.exe
 # versioning
 MAJOR    := 0
 MINOR    := 0
-PATCH    := 2
+PATCH    := 3
 GITHASH  := $(shell git rev-parse HEAD)		# short: git rev-parse --short HEAD
 VERSION  := $(MAJOR).$(MINOR).$(PATCH)
 
@@ -28,12 +28,16 @@ test: $(TEST)
 
 # build and run the test program; exits if any tests fail
 $(TEST): $(TESTSRC)
+	@echo -n creating target directory ...
+	@mkdir -p target && echo done!
 	@echo -n compiling tests: $^ $@ ...
 	@$(CC) $(CFLAGS) -o $@ $^ && echo done!
 	@$(TEST)
 
 # build the main program
 $(PROGRAM): $(MAINSRC)
+	@echo -n creating target directory ...
+	@mkdir -p target && echo done!
 	@echo -n compiling main: $^ $@ ...
 	@$(CC) $(CFLAGS) -o $@ $^ && echo done!
 
