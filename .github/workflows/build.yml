@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Verify
+    - name: LogVariables
       run: make print
+    - name: LogStepsTest
+      run: make -n test
+    - name: LogStepsBuild
+      run: make -n build
     - name: Test
       run: make test
     - name: build
