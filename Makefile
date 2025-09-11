@@ -27,7 +27,7 @@ build: $(PROGRAM)
 # 'test' task
 test: $(TEST)
 
-# 'header' task
+# 'vh' task, creates version header
 vh: $(HEADER)
 
 # build and run the test program; exits if any tests fail
@@ -48,12 +48,18 @@ $(PROGRAM): $(MAINSRC) $(HEADER)
 # create version header file
 $(HEADER):
 	@echo -n creating version header file ...
-	@echo "#ifndef VERSION__HEADER__DG__H__" > $(HEADER)
-	@echo "#define VERSION__HEADER__DG__H__" >> $(HEADER)
-	@echo "" >> $(HEADER)
+	@echo '#ifndef VERSION__HEADER__DG__H__' > $(HEADER)
+	@echo '#define VERSION__HEADER__DG__H__' >> $(HEADER)
+	@echo '#ifdef __cplusplus' >> $(HEADER)
+	@echo 'extern "C" {' >> $(HEADER)
+	@echo '#endif' >> $(HEADER)
+	@echo '' >> $(HEADER)
 	@echo '#define VERSION "$(VERSION)"' >> $(HEADER)
-	@echo "" >> $(HEADER)
-	@echo "#endif" >> $(HEADER)
+	@echo '' >> $(HEADER)
+	@echo '#ifdef __cplusplus' >> $(HEADER)
+	@echo '}' >> $(HEADER)
+	@echo '#endif' >> $(HEADER)
+	@echo '#endif' >> $(HEADER)
 	@echo done!
 
 # 'clean' task

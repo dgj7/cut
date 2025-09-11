@@ -1,6 +1,10 @@
 #ifndef C__UNIT__TESTS__H__
 #define C__UNIT__TESTS__H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdbool.h>                                            // bool data type
 
 /**
@@ -24,5 +28,9 @@ void register_test(void (*f)(cut_run_t *), char * name);
 int run_tests();
 
 void assert_true(bool assertion, cut_run_t * run);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
