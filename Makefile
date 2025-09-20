@@ -9,20 +9,12 @@ TESTSRC  := $(LIBSRC) $(shell find test -name "*.c")
 BUILDDIR := target
 PROGRAM  := $(BUILDDIR)/main.exe
 TEST     := $(BUILDDIR)/test.exe
-HEADER   := src/version.h
-
-# versioning
-MAJOR    := 0
-MINOR    := 0
-PATCH    := 6
-GITHASH  := $(shell git rev-parse HEAD)
-VERSION  := $(MAJOR).$(MINOR).$(PATCH).$(GITHASH)
 
 # tasks that aren't files
-.PHONY: all vh build test clean print
+.PHONY: all build test clean print
 
 # first target is 'all' task
-all: clean vh test build
+all: clean test build
 
 # 'build' task
 build: $(PROGRAM)
@@ -30,40 +22,16 @@ build: $(PROGRAM)
 # 'test' task
 test: $(TEST)
 
-# 'vh' task, creates version header
-vh: $(HEADER)
-
 # build and run the test program; exits if any tests fail
 $(TEST): $(TESTSRC)
-	@echo -n creating target directory ...
-	@mkdir -p target && echo done!
 	@echo -n compiling tests: $^ $@ ...
 	@$(CC) $(CFLAGS) -o $@ $^ && echo done!
 	@$(TEST)
 
 # build the main program
 $(PROGRAM): $(MAINSRC) $(HEADER)
-	@echo -n creating target directory ...
-	@mkdir -p target && echo done!
 	@echo -n compiling main: $^ $@ ...
 	@$(CC) $(CFLAGS) -o $@ $^ && echo done!
-
-# create version header file
-$(HEADER):
-	@echo -n creating version header file ...
-	@echo '#ifndef VERSION__HEADER__DG__H__' > $(HEADER)
-	@echo '#define VERSION__HEADER__DG__H__' >> $(HEADER)
-	@echo '#ifdef __cplusplus' >> $(HEADER)
-	@echo 'extern "C" {' >> $(HEADER)
-	@echo '#endif' >> $(HEADER)
-	@echo '' >> $(HEADER)
-	@echo '#define VERSION "$(VERSION)"' >> $(HEADER)
-	@echo '' >> $(HEADER)
-	@echo '#ifdef __cplusplus' >> $(HEADER)
-	@echo '}' >> $(HEADER)
-	@echo '#endif' >> $(HEADER)
-	@echo '#endif' >> $(HEADER)
-	@echo done!
 
 # 'clean' task
 clean:
@@ -72,6 +40,8 @@ clean:
 	@rm -rf $(TEST)
 	@rm -rf $(HEADER)
 	@echo done!
+	@echo -n creating target directory ...
+	@mkdir -p target && echo done!
 
 # 'print' task; meant for debugging/understanding
 print:
@@ -81,8 +51,3 @@ print:
 	@echo LIBSRC: $(LIBSRC)
 	@echo TEST: $(TEST)
 	@echo TESTSRC: $(TESTSRC)
-	@echo MAJOR: $(MAJOR)
-	@echo MINOR: $(MINOR)
-	@echo PATCH: $(PATCH)
-	@echo GITHASH: [$(GITHASH)]
-	@echo VERSION: [$(VERSION)]

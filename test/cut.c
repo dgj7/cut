@@ -4,7 +4,7 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.5"
+#define CUT_VERSION "0.0.6"
 #define MAX_TESTS 1000
 
 cut_test_t tests[MAX_TESTS];
@@ -36,10 +36,9 @@ void register_test(void (*f)(cut_run_t *), char * name)
 int run_tests(cut_config_t * config)
 {
     /* storage for the number of failed tests; initially, zero */
-    int test_function_count = 0;
-    int total = 0;
     int failed = 0;
     int succeeded = 0;
+    int test_function_count = 0;
 
     /* store run information */
     cut_run_t runs[MAX_TESTS];
@@ -61,9 +60,8 @@ int run_tests(cut_config_t * config)
         (*test.test)(&run);
 
         /* update total counts */
-        succeeded += run.total_successful;
-        failed += run.total_failed;
-        total += run.total_successful + run.total_failed;
+        failed += run.total_failed > 0 ? 1 : 0;
+        succeeded += run.total_failed < 1 ? 1 : 0;
         test_function_count++;
 
         /* store the run for printing later */
@@ -73,13 +71,13 @@ int run_tests(cut_config_t * config)
     /* print end summary, if requested */
     if (config->print_summary)
     {
-        printf("unit test summary - cut v%s\n", CUT_VERSION);
+        printf("\033[35munit test summary - cut v%s\033[m\n", CUT_VERSION);
         for (int c = 0; c < test_function_count; c++)
         {
             cut_run_t run = runs[c];
-            printf("\t%s: %s\n", run.name, run.total_failed > 0 ? "failed" : "succeeded");
+            printf("\t%s: %s (%d ok, %d failed)\n", run.name, run.total_failed > 0 ? "\033[31mfailed\033[m" : "\033[32mok\033[m", run.total_successful, run.total_failed);
         }
-        printf("%d tests; %d succeeded, %d failed\n", total, succeeded, failed);
+        printf("%s: %d succeeded, %d failed\n", failed > 0 ? "\033[31mFAIL\033[m" : "\033[32mSUCCESS\033[m", succeeded, failed);
     }
 
     /* done; return the failed count */

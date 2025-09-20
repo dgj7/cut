@@ -8,10 +8,11 @@ int main()
     /* configure cut */
     cut_config_t config = {.print_summary = true};
 
-    /* this test always passes */
+    /* these tests pass */
     register_test(test1, "test1");
+    register_test(test5, "test5");
 
-    /* uncomment these tests to verify failure */
+    /* these tests fail; uncomment these tests to verify failure */
     //register_test(test2, "test2");
     //register_test(test3, "test3");
     //register_test(test4, "test4");

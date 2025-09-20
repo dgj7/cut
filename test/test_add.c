@@ -31,3 +31,9 @@ void test4(cut_run_t * run)
     assert_true(3 == add(1, 1), run);
     assert_true(3 == add(1, 1), run);
 }
+
+/* single assert, succeeds */
+void test5(cut_run_t * run)
+{
+    assert_true(3 == add(1, 2), run);
+}
