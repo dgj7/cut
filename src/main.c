@@ -3,9 +3,11 @@
 #include "add.h"
 #include "version.h"
 
-int main(int argc, char * argv[]) {
+int main(int argc, char * argv[])
+{
     /* print version info, if requested */
-    if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'v') {
+    if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'v')
+    {
             printf("add demo, version: %s\n", VERSION);
             return 0;
     }
