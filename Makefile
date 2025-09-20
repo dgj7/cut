@@ -19,7 +19,10 @@ GITHASH  := $(shell git rev-parse HEAD)
 VERSION  := $(MAJOR).$(MINOR).$(PATCH).$(GITHASH)
 
 # tasks that aren't files
-.PHONY: vh build test clean print
+.PHONY: all vh build test clean print
+
+# first target is 'all' task
+all: clean vh test build
 
 # 'build' task
 build: $(PROGRAM)
