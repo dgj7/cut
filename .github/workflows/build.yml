@@ -16,7 +16,7 @@ jobs:
     - name: LogStepsBuild
       run: make -n build
     - name: Test
-      run: make test
+      run: make clean test
     - name: Build
       run: make build
     - name: Confirm
