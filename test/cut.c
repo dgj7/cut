@@ -4,7 +4,7 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.7"
+#define CUT_VERSION "0.0.8"
 #define MAX_TESTS 1000
 
 struct cut_test_t tests[MAX_TESTS];
@@ -13,7 +13,7 @@ static int cutTestIndex = 0;
 /**
  * Register a test with cut; this is necessary for the test to be run by the framework.
  */
-void register_test(void (*f)(struct cut_run_t *), char * name)
+const void register_test(const void (*f)(struct cut_run_t *), const char * name)
 {
     /* create a test instance; this will be stored internally */
     struct cut_test_t test;
@@ -33,7 +33,7 @@ void register_test(void (*f)(struct cut_run_t *), char * name)
 /**
  * Run all tests registered with cut.
  */
-int run_tests(struct cut_config_t * config)
+const int run_tests(const struct cut_config_t * config)
 {
     /* storage for the number of failed tests; initially, zero */
     int failed = 0;
@@ -87,7 +87,7 @@ int run_tests(struct cut_config_t * config)
 /**
  * Assert that the given value is true.
  */
-void assert_true(bool assertion, struct cut_run_t * run)
+const void assert_true(const bool assertion, struct cut_run_t * run)
 {
     if (assertion)
     {

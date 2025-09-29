@@ -35,17 +35,17 @@ struct cut_config_t {
 /**
  * Register a unit test function to be run by cut.
  */
-void register_test(void (*f)(struct cut_run_t *), char * name);
+const void register_test(const void (*f)(struct cut_run_t *), const char * name);
 
 /**
  * Run all unit tests registered with cut.
  */
-int run_tests(struct cut_config_t * config);
+const int run_tests(const struct cut_config_t * config);
 
 /**
  * Assert a state within a unit test registered with cut.
  */
-void assert_true(bool assertion, struct cut_run_t * run);
+const void assert_true(const bool assertion, struct cut_run_t * run);
 
 /* end: interpret as c */
 #ifdef __cplusplus

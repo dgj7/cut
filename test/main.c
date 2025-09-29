@@ -6,7 +6,7 @@
 int main()
 {
     /* configure cut */
-    struct cut_config_t config = {.print_summary = true};
+    const struct cut_config_t config = {.print_summary = true};
 
     /* these tests pass */
     register_test(test1, "test1");

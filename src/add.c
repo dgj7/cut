@@ -1,7 +1,7 @@
 #include "add.h"
 
 
-int add(int leftAddend, int rightAddend)
+const int add(int leftAddend, int rightAddend)
 {
     return leftAddend + rightAddend;
 }
