@@ -10,16 +10,10 @@ BUILDDIR := target
 PROGRAM  := $(BUILDDIR)/main.exe
 TEST     := $(BUILDDIR)/test.exe
 
-# tasks that aren't files
+# tasks
 .PHONY: all build test clean print
-
-# first target is 'all' task
 all: clean test build
-
-# 'build' task
 build: $(PROGRAM)
-
-# 'test' task
 test: $(TEST)
 
 # build and run the test program; exits if any tests fail
