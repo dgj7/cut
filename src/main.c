@@ -2,8 +2,11 @@
 
 #include "add.h"
 
-int main(int argc, char * argv[])
-{
+int
+main(
+    int argc
+    ,char * argv[]
+){
     /* addends; these could come from command line */
     const int leftAddend = 2;
     const int rightAddend = 3;

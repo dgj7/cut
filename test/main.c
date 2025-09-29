@@ -3,8 +3,11 @@
 #include "cut.h"
 #include "test_add.h"
 
-int main()
-{
+int
+main(
+    int argc
+    ,char **argv
+){
     /* configure cut */
     const struct cut_config_t config = {.print_summary = true};
 
