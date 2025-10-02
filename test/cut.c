@@ -4,7 +4,7 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.12"
+#define CUT_VERSION "0.0.13"
 #define MAX_TESTS 1000
 
 struct cut_test_t tests[MAX_TESTS];
@@ -61,7 +61,7 @@ run_tests(
     for (int c = 0; c < cutTestIndex; c++)
     {
         /* create a test run; values are initially zero */
-        struct cut_run_t run = {.total_successful=0, .total_failed=0};
+        struct cut_run_t run = {0, 0};
 
         /* get the test instance */
         struct cut_test_t test = tests[c];
