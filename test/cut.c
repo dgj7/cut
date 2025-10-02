@@ -4,13 +4,14 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.11"
+#define CUT_VERSION "0.0.12"
 #define MAX_TESTS 1000
 
 struct cut_test_t tests[MAX_TESTS];
 static int cutTestIndex = 0;
 
 const static int ERROR_MALLOC_TEST_NAME = 101;
+const static int ERROR_MALLOC_RUN_NAME = 102;
 
 /**
  * Register a test with cut; this is necessary for the test to be run by the framework.
@@ -67,6 +68,10 @@ run_tests(
 
         /* copy the test name over */
         run.name = malloc(sizeof(strlen(test.name)));
+        if (run.name == NULL) {
+            printf("ERROR: %d: failed to allocate memory for ru n name\n", ERROR_MALLOC_RUN_NAME);
+            exit(ERROR_MALLOC_RUN_NAME);
+        }
         strcpy((char*)run.name, test.name);
 
         /* run the test instance */
