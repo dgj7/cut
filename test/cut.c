@@ -4,7 +4,7 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.13"
+#define CUT_VERSION "0.0.14"
 #define MAX_TESTS 1000
 
 struct cut_test_t tests[MAX_TESTS];
@@ -28,7 +28,7 @@ register_test(
     test.test = f;
 
     /* set test name */
-    test.name = malloc(sizeof(char) * strlen(name));
+    test.name = (char*) malloc(sizeof(char) * strlen(name));
     if (test.name == NULL) {
         printf("ERROR: %d: failed to allocate memory for test name\n", ERROR_MALLOC_TEST_NAME);
         exit(1);
@@ -67,7 +67,7 @@ run_tests(
         struct cut_test_t test = tests[c];
 
         /* copy the test name over */
-        run.name = malloc(sizeof(strlen(test.name)));
+        run.name = (char*) malloc(sizeof(strlen(test.name)));
         if (run.name == NULL) {
             printf("ERROR: %d: failed to allocate memory for ru n name\n", ERROR_MALLOC_RUN_NAME);
             exit(ERROR_MALLOC_RUN_NAME);
