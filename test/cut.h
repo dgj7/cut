@@ -47,6 +47,11 @@ const int run_tests(const struct cut_config_t * const config);
  */
 const void assert_true(const bool assertion, struct cut_run_t * const run);
 
+/**
+ * Assert equality for integers.
+ */
+const void assert_equals(const int expected, const int actual, struct cut_run_t * const run);
+
 /* end: interpret as c */
 #ifdef __cplusplus
 }
