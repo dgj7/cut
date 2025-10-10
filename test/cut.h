@@ -22,7 +22,7 @@ struct cut_run_t {
  */
 struct cut_test_t {
     const char * name;
-    const void (*test)(struct cut_run_t *);
+    void (*test)(struct cut_run_t *);
 };
 
 /**
@@ -35,7 +35,7 @@ struct cut_config_t {
 /**
  * Register a unit test function to be run by cut.
  */
-const void register_test(const void (*f)(struct cut_run_t *), const char * const name);
+const void register_test(void (*f)(struct cut_run_t *), const char * const name);
 
 /**
  * Run all unit tests registered with cut.

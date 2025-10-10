@@ -4,7 +4,7 @@
 
 #include "cut.h"
 
-#define CUT_VERSION "0.0.14"
+#define CUT_VERSION "0.0.15"
 #define MAX_TESTS 1000
 
 struct cut_test_t tests[MAX_TESTS];
@@ -18,7 +18,7 @@ const static int ERROR_MALLOC_RUN_NAME = 102;
  */
 const void
 register_test(
-    const void (*f)(struct cut_run_t *)
+    void (*f)(struct cut_run_t *)
     ,const char * const name
 ){
     /* create a test instance; this will be stored internally */
